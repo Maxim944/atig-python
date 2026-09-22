@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Вход — ATIG{% endblock %}
+{% block content %}
+<div class="relative flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 py-16">
+  <div class="pointer-events-none absolute inset-0">
+    <div class="absolute left-1/2 top-1/4 h-[400px] w-[500px] -translate-x-1/2 rounded-full bg-violet-600/15 blur-[100px]"></div>
+  </div>
+  <div class="relative w-full max-w-md">
+    <div class="mb-8 flex justify-center">
+      <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-cyan-500 shadow-lg shadow-violet-500/25">
+        <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+    </div>
+
+    {% if sent %}
+    <div class="text-center space-y-6">
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-violet-500/20">
+        <svg class="h-8 w-8 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h2 class="text-2xl font-bold text-white">Проверьте почту</h2>
+      <p class="text-zinc-400">Мы отправили волшебную ссылку на <span class="text-white font-medium">{{ email }}</span>.<br>Нажмите на неё, чтобы войти в ATIG.</p>
+      <p class="text-sm text-zinc-500">Письмо не пришло? Проверьте папку «Спам» или <a href="/login" class="text-violet-400 hover:underline">попробуйте снова</a>.</p>
+    </div>
+    {% else %}
+    <form method="post" action="/login" class="space-y-6">
+      <div class="space-y-2 text-center">
+        <h2 class="text-2xl font-bold text-white">Войти в ATIG</h2>
+        <p class="text-zinc-400">Введите email — мы отправим вам ссылку для входа без пароля</p>
+      </div>
+      {% if error %}
+      <div class="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">{{ error }}</div>
+      {% endif %}
+      <div class="space-y-2">
+        <label for="email" class="block text-sm font-medium text-zinc-300">Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com"
+               class="flex h-11 w-full rounded-lg border border-zinc-700 bg-zinc-900/50 px-4 py-2 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500">
+      </div>
+      <button type="submit" class="w-full h-12 rounded-md bg-violet-600 hover:bg-violet-500 text-white font-medium transition">
+        Получить ссылку
+      </button>
+      <p class="text-center text-xs text-zinc-500">
+        Нажимая кнопку, вы соглашаетесь с <a href="/terms" class="text-violet-400 hover:underline">условиями</a> и <a href="/privacy" class="text-violet-400 hover:underline">политикой конфиденциальности</a>
+      </p>
+    </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

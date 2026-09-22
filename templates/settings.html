@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Настройки — ATIG{% endblock %}
+{% block content %}
+<div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+  <h1 class="mb-8 text-3xl font-bold text-white">Настройки</h1>
+  <div class="space-y-6">
+    <div class="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+      <h2 class="text-lg font-semibold text-white">Безопасность</h2>
+      <p class="mt-1 text-sm text-zinc-400">Вход осуществляется только через magic link. Пароль не требуется.</p>
+    </div>
+    <div class="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+      <h2 class="text-lg font-semibold text-white">Уведомления</h2>
+      <p class="mt-1 text-sm text-zinc-400">Настройки уведомлений появятся в следующих обновлениях.</p>
+    </div>
+    <div class="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+      <h2 class="text-lg font-semibold text-white">Данные</h2>
+      <p class="mt-1 text-sm text-zinc-400">Вы можете запросить экспорт или удаление данных, написав на <a href="mailto:creator@atig.ai" class="text-violet-400 hover:underline">creator@atig.ai</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

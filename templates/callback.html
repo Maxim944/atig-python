@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Авторизация — ATIG{% endblock %}
+{% block content %}
+<div class="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4">
+  <div class="text-center space-y-6 max-w-md">
+    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-violet-500/20">
+      <svg class="h-8 w-8 text-violet-400 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+    </div>
+    <h2 class="text-2xl font-bold text-white">Выполняется вход...</h2>
+    <p class="text-zinc-400">Если страница не перенаправила вас автоматически, <a href="/dashboard" class="text-violet-400 hover:underline">перейдите в кабинет</a>.</p>
+  </div>
+</div>
+<script>
+  // Handle tokens from URL hash (Supabase default for some flows)
+  (async function() {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const params = new URLSearchParams(hash);
+      const access_token = params.get('access_token');
+      const refresh_token = params.get('refresh_token');
+      if (access_token) {
+        document.cookie = `sb-access-token=${access_token}; path=/; max-age=${60*60*24*7}; samesite=lax`;
+        if (refresh_token) {
+          document.cookie = `sb-refresh-token=${refresh_token}; path=/; max-age=${60*60*24*30}; samesite=lax`;
+        }
+        window.location.href = '/dashboard';
+        return;
+      }
+    }
+    setTimeout(() => { window.location.href = '/dashboard'; }, 2000);
+  })();
+</script>
+{% endblock %}

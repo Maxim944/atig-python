@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ATIG — Guardian Trusted Autonomous Intelligence{% endblock %}</title>
+  <meta name="description" content="Автономная ИИ-экосистема для защиты жизни, управления активами и сохранения цифрового наследия с приоритетом абсолютной приватности.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: { 400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed' },
+            cyan: { 400: '#22d3ee', 500: '#06b6d4' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #000; color: #ededed; }
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glow-violet { box-shadow: 0 0 40px rgba(139, 92, 246, 0.3); }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body class="min-h-full flex flex-col bg-black text-zinc-100 antialiased">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/50 bg-black/80 backdrop-blur-xl">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <a href="/" class="flex items-center gap-2">
+        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500">
+          <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-white">ATIG</span>
+      </a>
+      <nav class="hidden items-center gap-6 md:flex">
+        <a href="/#features" class="text-sm text-zinc-400 transition hover:text-white">Возможности</a>
+        <a href="/#about" class="text-sm text-zinc-400 transition hover:text-white">О нас</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        {% if user %}
+          <a href="/dashboard" class="text-sm text-zinc-300 hover:text-white px-3 py-1.5 rounded-md hover:bg-zinc-800">Кабинет</a>
+          <a href="/logout" class="text-sm border border-zinc-700 px-3 py-1.5 rounded-md hover:bg-zinc-800">Выйти</a>
+        {% else %}
+          <a href="/login" class="bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2 rounded-md transition">Войти</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 pt-16">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-800/50 bg-black">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
+        <div class="flex items-center gap-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500">
+            <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <span class="text-lg font-bold text-white">ATIG</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-400">
+          <a href="/privacy" class="hover:text-white transition">Политика конфиденциальности</a>
+          <a href="/terms" class="hover:text-white transition">Условия использования</a>
+          <a href="mailto:creator@atig.ai" class="flex items-center gap-1.5 hover:text-white transition">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            creator@atig.ai
+          </a>
+        </div>
+      </div>
+      <div class="mt-8 border-t border-zinc-800/50 pt-8 text-center text-sm text-zinc-500">
+        © 2026 ATIG — Guardian Trusted Autonomous Intelligence. Все права защищены.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
